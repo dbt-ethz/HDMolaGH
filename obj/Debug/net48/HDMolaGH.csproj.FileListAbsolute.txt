@@ -1,0 +1,12 @@
+C:\D\GitHub\HDMolaGH\bin\Debug\net48\HDMolaGH.gha
+C:\D\GitHub\HDMolaGH\bin\Debug\net48\HDMolaGH.pdb
+C:\D\GitHub\HDMolaGH\bin\Debug\net48\HDMola.dll
+C:\D\GitHub\HDMolaGH\bin\Debug\net48\HDMola.pdb
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.csproj.AssemblyReference.cache
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.GeneratedMSBuildEditorConfig.editorconfig
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.AssemblyInfoInputs.cache
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.AssemblyInfo.cs
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.csproj.CoreCompileInputs.cache
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.csproj.CopyComplete
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.gha
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.pdb

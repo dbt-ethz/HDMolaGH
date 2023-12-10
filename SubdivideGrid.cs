@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using Mola;
+using Grasshopper.Kernel;
+using Rhino.Geometry;
+
+namespace HDMolaGH
+{
+    public class SubdivideGrid : GH_Component
+    {
+        public SubdivideGrid()
+          : base("SubdivideGrid", "Grid",
+              "splits all triangle or quad faces in a MolaMesh into regular grids",
+              "Mola", "Subdivision")
+        {
+        }
+        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+        {
+            pManager.AddMeshParameter("Mesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("U", "U", "u direction division number", GH_ParamAccess.item, 2);
+            pManager.AddIntegerParameter("V", "V", "v direction division number", GH_ParamAccess.item, 2);
+            pManager.AddIntegerParameter("Iteration", "I", "subdivide times", GH_ParamAccess.item, 1);
+        }
+        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+        {
+            pManager.AddMeshParameter("Mesh", "M", "result mesh", GH_ParamAccess.item);
+        }
+        protected override void SolveInstance(IGH_DataAccess DA)
+        {
+            Mesh rMesh = new Mesh();
+            int u = 2;
+            int v = 2;
+            int iteration = 1;
+
+            DA.GetData(0, ref rMesh);
+            DA.GetData(1, ref u);
+            DA.GetData(2, ref v);
+            DA.GetData(3, ref iteration);
+
+
+            MolaMesh mMesh = HDMeshToRhino.FillMolaMesh(rMesh);
+            for (int i = 0; i < iteration; i++)
+            {
+                mMesh = MeshSubdivision.Grid(mMesh, u, v);
+            }
+
+            rMesh = HDMeshToRhino.FillRhinoMesh(mMesh);
+            DA.SetData(0, rMesh);
+        }
+        protected override System.Drawing.Bitmap Icon
+        {
+            get
+            {
+                //You can add image files to your project resources and access them like this:
+                // return Resources.IconForThisComponent;
+                return null;
+            }
+        }
+        public override Guid ComponentGuid
+        {
+            get { return new Guid("4D58DB06-45F8-4244-BCF6-BBD4AAFE0E2D"); }
+        }
+    }
+}
