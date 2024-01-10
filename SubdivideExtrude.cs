@@ -16,35 +16,33 @@ namespace HDMolaGH
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
+            pManager.AddGenericParameter("MolaMesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
             pManager.AddNumberParameter("Height", "H", "extrude height", GH_ParamAccess.item, 1.0);
             pManager.AddBooleanParameter("Cap", "C", "wether cap the top", GH_ParamAccess.item, false);
             pManager.AddIntegerParameter("Iteration", "I", "subdivide times", GH_ParamAccess.item, 1);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "result mesh", GH_ParamAccess.item);
+            pManager.AddGenericParameter("MolaMesh", "M", "result mesh", GH_ParamAccess.item);
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Mesh rMesh = new Mesh();
+            MolaMesh mMesh = new MolaMesh();
             double h = 0;
             bool c = false;
             int iteration = 1;
 
-            DA.GetData(0, ref rMesh);
+            DA.GetData(0, ref mMesh);
             DA.GetData(1, ref h);
             DA.GetData(2, ref c);
             DA.GetData(3, ref iteration);
 
-            MolaMesh mMesh = HDMeshToRhino.FillMolaMesh(rMesh);
             for (int i = 0; i < iteration; i++)
             {
                 mMesh = MeshSubdivision.Extrude(mMesh, (float)h, c);
             }
 
-            rMesh = HDMeshToRhino.FillRhinoMesh(mMesh);
-            DA.SetData(0, rMesh);
+            DA.SetData(0, mMesh);
         }
         protected override System.Drawing.Bitmap Icon
         {

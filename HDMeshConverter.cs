@@ -8,7 +8,7 @@ using Mola;
 
 namespace HDMolaGH
 {
-    class HDMeshToRhino
+    class HDMeshConverter
     {
         public static Mesh FillRhinoMesh(MolaMesh molaMesh)
         {

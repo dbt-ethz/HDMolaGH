@@ -25,7 +25,6 @@
   </PropertyGroup>
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="//Copy &quot;$(TargetPath)&quot; &quot;C:\Users\Wenqian\AppData\Roaming\Grasshopper\Libraries\HDMolaGH.gha&quot;&#xD;&#xA;//Erase &quot;$(TargetPath)&quot;" />
   </Target>
 
 </Project>

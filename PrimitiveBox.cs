@@ -26,7 +26,7 @@ namespace HDMolaGH
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddMeshParameter("Box", "Box", "a box mesh", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Box", "Box", "a box Mola mesh", GH_ParamAccess.item);
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
@@ -46,9 +46,8 @@ namespace HDMolaGH
 
             MolaMesh mMesh = new MolaMesh();
             MeshFactory.AddBox(mMesh, (float)x1, (float)y1, (float)z1, (float)x2, (float)y2, (float)z2);
-            Mesh rMesh = HDMeshToRhino.FillRhinoMesh(mMesh);
 
-            DA.SetData(0, rMesh);
+            DA.SetData(0, mMesh);
         }
         protected override System.Drawing.Bitmap Icon => null;
         public override Guid ComponentGuid => new Guid("3C05489B-F189-4C78-B8D5-0B9E4A4020DF");

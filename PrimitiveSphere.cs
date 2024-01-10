@@ -25,7 +25,7 @@ namespace HDMolaGH
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "result mesh", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Mesh", "M", "a sphere Mola mesh", GH_ParamAccess.item);
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
@@ -45,9 +45,7 @@ namespace HDMolaGH
             DA.GetData(5, ref v);
 
             MolaMesh mMesh = MeshFactory.CreateSphere((float)r, (float)x, (float)y, (float)z, u, v);
-            Mesh rMesh = HDMeshToRhino.FillRhinoMesh(mMesh);
-
-            DA.SetData(0, rMesh);
+            DA.SetData(0, mMesh);
         }
         protected override System.Drawing.Bitmap Icon
         {

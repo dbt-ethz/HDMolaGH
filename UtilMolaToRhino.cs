@@ -6,17 +6,17 @@ using Rhino.Geometry;
 
 namespace HDMolaGH
 {
-    public class MeshConverter : GH_Component
+    public class UtilMolaToRhino : GH_Component
     {
-        public MeshConverter()
-          : base("MeshConverter", "Convert",
+        public UtilMolaToRhino()
+          : base("Mola to Rhino", "ToRhino",
               "convert a mola mesh to a rhino mesh",
               "Mola", "Utils")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "mesh to be converted", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Mola Mesh", "M", "mesh to be converted", GH_ParamAccess.item);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -25,13 +25,10 @@ namespace HDMolaGH
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             MolaMesh mMesh = new MolaMesh();
-            Mesh rMesh = new Mesh();
-
             DA.GetData(0, ref mMesh);
 
-            rMesh = HDMeshToRhino.FillRhinoMesh(mMesh);
+            Mesh rMesh = HDMeshConverter.FillRhinoMesh(mMesh);
             DA.SetData(0, rMesh);
-
         }
 
         protected override System.Drawing.Bitmap Icon
@@ -42,6 +39,7 @@ namespace HDMolaGH
                 // return Resources.IconForThisComponent;
                 return null;
             }
+        }
         public override Guid ComponentGuid
         {
             get { return new Guid("0132E621-E581-422D-8750-148037B6FBE3"); }

@@ -32,7 +32,7 @@ namespace HDMolaGH
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddMeshParameter("Quad", "Quad", "a quad face mesh", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Quad", "Quad", "a quad face Mola mesh", GH_ParamAccess.item);
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
@@ -66,9 +66,7 @@ namespace HDMolaGH
             MeshFactory.AddQuad(mMesh, (float)x1, (float)y1, (float)z1, (float)x2, (float)y2, (float)z2,
                 (float)x3, (float)y3, (float)z3, (float)x4, (float)y4, (float)z4, Color.red);
 
-            Mesh rMesh = HDMeshToRhino.FillRhinoMesh(mMesh);
-
-            DA.SetData(0, rMesh);
+            DA.SetData(0, mMesh);
         }
         protected override System.Drawing.Bitmap Icon
         {
