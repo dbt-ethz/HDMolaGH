@@ -10,9 +10,9 @@ namespace HDMolaGH
     public class AnalyzeFaceLocation : GH_Component
     {
         public AnalyzeFaceLocation()
-          : base("AnalyzeFaceLocation", "Face Location",
+          : base("Analyze Face Location", "Face Location",
             "get a list of face center locations",
-            "Mola", "Analyze")
+            "Mola", "3-Analysis")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -34,7 +34,7 @@ namespace HDMolaGH
                 locationList.Add(new Vector3f(mMesh.FaceCenter(i).x, mMesh.FaceCenter(i).y, mMesh.FaceCenter(i).z));
             }
 
-            DA.SetData(0, locationList);
+            DA.SetDataList(0, locationList);
         }
         protected override System.Drawing.Bitmap Icon
         {

@@ -4,22 +4,23 @@ using Mola;
 using Grasshopper;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+using System.Linq;
 
 namespace HDMolaGH
 {
     public class AnalyzeFaceModulo : GH_Component
     {
         public AnalyzeFaceModulo()
-          : base("AnalyzeFaceModulo", "Face Modulo",
+          : base("Analyze Face Modulo", "Face Modulo",
             "get a boolean list of faces modolo",
-            "Mola", "Analyze")
+            "Mola", "3-Analysis")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("MolaMesh", "M", "mesh to be analyzed", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Modulo", "Mo", "modulo number", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("N", "N", "every n item", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Modulo", "Mo", "modulo number", GH_ParamAccess.item, 4);
+            pManager.AddIntegerParameter("N", "N", "every n item", GH_ParamAccess.item, 0);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -34,7 +35,7 @@ namespace HDMolaGH
             DA.GetData(1, ref modulo);
             DA.GetData(2, ref n);
 
-            List<bool> boolList = new List<bool>(mMesh.FacesCount());
+            List<bool >boolList = Enumerable.Repeat(false, mMesh.FacesCount()).ToList();
             for (int i = 0; i < mMesh.FacesCount(); i++)
             {
                 if(i % modulo == n)
@@ -43,7 +44,7 @@ namespace HDMolaGH
                 }
             }
 
-            DA.SetData(0, boolList);
+            DA.SetDataList(0, boolList);
         }
         protected override System.Drawing.Bitmap Icon
         {

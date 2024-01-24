@@ -7,17 +7,17 @@ using Rhino.Geometry;
 
 namespace HDMolaGH
 {
-    public class UtilRhinoToMola : GH_Component
+    public class UtilsUpdateTopology : GH_Component
     {
-        public UtilRhinoToMola()
-          : base("Rhino to Mola", "To Mola",
-              "convert a rhino mesh to a mola mesh",
-              "Mola", "4-Utils")
+        public UtilsUpdateTopology()
+          : base("Update Topology", "Topology",
+            "update topology of a MolaMesh",
+            "Mola", "4-Utils")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddMeshParameter("Rhino Mesh", "M", "mesh to be converted", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Mola Mesh", "M", "mesh to be modified", GH_ParamAccess.item);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -25,10 +25,11 @@ namespace HDMolaGH
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            Mesh rMesh = new Mesh();
-            DA.GetData(0, ref rMesh);
+            MolaMesh mMesh = new MolaMesh();
+            DA.GetData(0, ref mMesh);
 
-            MolaMesh mMesh = HDMeshConverter.FillMolaMesh(rMesh);
+            mMesh.WeldVertices();
+            mMesh.UpdateTopology();
             DA.SetData(0, mMesh);
         }
         protected override System.Drawing.Bitmap Icon
@@ -42,7 +43,7 @@ namespace HDMolaGH
         }
         public override Guid ComponentGuid
         {
-            get { return new Guid("e6e96c40-f6a6-4578-9653-b633e084eca5"); }
+            get { return new Guid("79613dcb-7b18-4378-9a6a-b5f7728a24c1"); }
         }
     }
 }

@@ -9,16 +9,16 @@ namespace HDMolaGH
     public class SubdivideExtrude : GH_Component
     {
         public SubdivideExtrude()
-          : base("SubdivideExtrude", "Extrude",
+          : base("Subdivide Extrude", "Extrude",
               "extrudes the all faces in a MolaMesh straight by distance height",
-              "Mola", "Subdivision")
+              "Mola", "2-Subdivisions")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("MolaMesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
             pManager.AddNumberParameter("Height", "H", "extrude height", GH_ParamAccess.item, 1.0);
-            pManager.AddBooleanParameter("Cap", "C", "wether cap the top", GH_ParamAccess.item, false);
+            pManager.AddBooleanParameter("Cap", "C", "wether cap the top", GH_ParamAccess.item, true);
             pManager.AddIntegerParameter("Iteration", "I", "subdivide times", GH_ParamAccess.item, 1);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
@@ -29,7 +29,7 @@ namespace HDMolaGH
         {
             MolaMesh mMesh = new MolaMesh();
             double h = 0;
-            bool c = false;
+            bool c = true;
             int iteration = 1;
 
             DA.GetData(0, ref mMesh);

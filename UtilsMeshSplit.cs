@@ -8,12 +8,12 @@ using System.Linq;
 
 namespace HDMolaGH
 {
-    public class UtilMeshSplit : GH_Component
+    public class UtilsMeshSplit : GH_Component
     {
-        public UtilMeshSplit()
+        public UtilsMeshSplit()
           : base("Mesh Split", "Split",
             "Split a Mola mesh according to a boolean list",
-            "Mola", "Utils")
+            "Mola", "4-Utils")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -32,7 +32,7 @@ namespace HDMolaGH
             List<bool> maskList = new List<bool>();
 
             DA.GetData(0, ref mMesh);
-            DA.GetData(1, ref maskList);
+            DA.GetDataList(1, maskList);
 
             if(maskList.Count > mMesh.FacesCount())
             {

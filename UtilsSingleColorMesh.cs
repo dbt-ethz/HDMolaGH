@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using Mola;
 using Grasshopper;
 using Grasshopper.Kernel;
+using Rhino.Geometry;
+using System.Linq;
 
 namespace HDMolaGH
 {
-    public class UtilMeshJoin : GH_Component
+    public class UtilsSingleColorMesh : GH_Component
     {
-        public UtilMeshJoin()
-          : base("Mesh Join", "Join",
-            "Join a list of Mola Meshes into one",
+        public UtilsSingleColorMesh()
+          : base("Single Color Mesh", "Single Color",
+            "Color Mola mesh faces according to a single color",
             "Mola", "4-Utils")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Mola Meshes", "M", "mesh to be joined", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Mola Mesh", "M", "mesh to be converted", GH_ParamAccess.item);
+            pManager.AddColourParameter("Single Color", "C", "a single color to color all faces", GH_ParamAccess.item);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -24,16 +27,18 @@ namespace HDMolaGH
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<MolaMesh> mMeshList = new List<MolaMesh>();
-            DA.GetDataList(0, mMeshList);
-
             MolaMesh mMesh = new MolaMesh();
-            for (int i = 0; i < mMeshList.Count; i++)
-            {
-                mMesh.AddMesh(mMeshList[i]);
-            }
+            System.Drawing.Color rColor = new System.Drawing.Color();
 
-            DA.SetData(0, mMesh);
+            DA.GetData(0, ref mMesh);
+            DA.GetData(1, ref rColor);
+
+            Color mColor = new Color((float)rColor.R / 255, (float)rColor.G / 255, (float)rColor.B / 255, (float)rColor.A / 255);
+
+            MolaMesh copyMesh = mMesh.Copy();
+            copyMesh.Colors = Enumerable.Repeat(mColor, copyMesh.VertexCount()).ToList();
+
+            DA.SetData(0, copyMesh);
         }
         protected override System.Drawing.Bitmap Icon
         {
@@ -46,7 +51,7 @@ namespace HDMolaGH
         }
         public override Guid ComponentGuid
         {
-            get { return new Guid("53d32542-fc19-46ca-b046-24923e137046"); }
+            get { return new Guid("2f278eb9-3661-4c8b-b1c6-2ff7688abd11"); }
         }
     }
 }

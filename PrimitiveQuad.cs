@@ -9,9 +9,9 @@ namespace HDMolaGH
     public class PrimitiveQuad : GH_Component
     {
         public PrimitiveQuad()
-          : base("Quad", "Quad",
+          : base("Mola Quad", "Quad",
             "create a quad face mesh",
-            "Mola", "Primitive")
+            "Mola", "1-Primitives")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)

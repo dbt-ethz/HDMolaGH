@@ -9,9 +9,9 @@ namespace HDMolaGH
     public class PrimitiveSphere : GH_Component
     {
         public PrimitiveSphere()
-          : base("Sphere", "Sphere",
+          : base("Mola Sphere", "Sphere",
             "create a sphere",
-            "Mola", "Primitive")
+            "Mola", "1-Primitives")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)

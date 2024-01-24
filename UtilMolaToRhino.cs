@@ -9,14 +9,15 @@ namespace HDMolaGH
     public class UtilMolaToRhino : GH_Component
     {
         public UtilMolaToRhino()
-          : base("Mola to Rhino", "ToRhino",
+          : base("Mola to Rhino", "To Rhino",
               "convert a mola mesh to a rhino mesh",
-              "Mola", "Utils")
+              "Mola", "4-Utils")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Mola Mesh", "M", "mesh to be converted", GH_ParamAccess.item);
+            pManager.AddBooleanParameter("With Color", "C", "convert mola color to rhino color", GH_ParamAccess.item, false);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -25,9 +26,18 @@ namespace HDMolaGH
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             MolaMesh mMesh = new MolaMesh();
+            bool withColor = false;
             DA.GetData(0, ref mMesh);
+            DA.GetData(1, ref withColor);
 
-            Mesh rMesh = HDMeshConverter.FillRhinoMesh(mMesh);
+            MolaMesh meshCopy = mMesh.Copy();
+            if (!withColor)
+            {
+                meshCopy.Colors = new List<Color>();
+            }
+
+            Mesh rMesh = HDMeshConverter.FillRhinoMesh(meshCopy);
+
             DA.SetData(0, rMesh);
         }
 

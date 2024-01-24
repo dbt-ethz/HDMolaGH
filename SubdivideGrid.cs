@@ -9,9 +9,9 @@ namespace HDMolaGH
     public class SubdivideGrid : GH_Component
     {
         public SubdivideGrid()
-          : base("SubdivideGrid", "Grid",
+          : base("Subdivide Grid", "Grid",
               "splits all triangle or quad faces in a MolaMesh into regular grids",
-              "Mola", "Subdivision")
+              "Mola", "2-Subdivisions")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)

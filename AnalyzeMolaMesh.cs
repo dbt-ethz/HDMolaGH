@@ -10,9 +10,9 @@ namespace HDMolaGH
     public class AnalyzeMolaMesh : GH_Component
     {
         public AnalyzeMolaMesh()
-          : base("AnalyzeMolaMesh", "Analyze Mesh",
+          : base("Analyze MolaMesh", "Analyze Mesh",
             "get Mola Mesh properties",
-            "Mola", "Analyzing")
+            "Mola", "3-Analysis")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -23,8 +23,8 @@ namespace HDMolaGH
         {
             pManager.AddIntegerParameter("Vertice Count", "V", "vertice count", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Face Count", "F", "face count", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Color Count", "C", "color count", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("UV Count", "UV", "UV count", GH_ParamAccess.item);
+            //pManager.AddIntegerParameter("Color Count", "C", "color count", GH_ParamAccess.item);
+            //pManager.AddIntegerParameter("UV Count", "UV", "UV count", GH_ParamAccess.item);
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
@@ -33,13 +33,13 @@ namespace HDMolaGH
 
             int vcount = mMesh.VertexCount();
             int fcount = mMesh.FacesCount();
-            int ccount = mMesh.Colors.Count;
-            int uvcount = mMesh.UVs.Count;
+            //int ccount = mMesh.Colors.Count;
+            //int uvcount = mMesh.UVs.Count;
 
             DA.SetData(0, vcount);
             DA.SetData(1, fcount);
-            DA.SetData(2, ccount);
-            DA.SetData(3, uvcount);
+            //DA.SetData(2, ccount);
+            //DA.SetData(3, uvcount);
         }
         protected override System.Drawing.Bitmap Icon
         {

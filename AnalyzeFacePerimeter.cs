@@ -10,9 +10,9 @@ namespace HDMolaGH
     public class AnalyzeFacePerimeter : GH_Component
     {
         public AnalyzeFacePerimeter()
-          : base("AnalyzeFaceEdgePerimeter", "Face Perimeter",
+          : base("Analyze Face Edge Perimeter", "Face Perimeter",
             "get a list of face perimeters",
-            "Mola", "Analyzing")
+            "Mola", "3-Analysis")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -34,7 +34,7 @@ namespace HDMolaGH
                 perimeterList.Add(mMesh.FacePerimeter(i));
             }
 
-            DA.SetData(0, perimeterList);
+            DA.SetDataList(0, perimeterList);
         }
         protected override System.Drawing.Bitmap Icon
         {

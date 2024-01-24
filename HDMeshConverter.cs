@@ -10,82 +10,88 @@ namespace HDMolaGH
 {
     class HDMeshConverter
     {
-        public static Mesh FillRhinoMesh(MolaMesh molaMesh)
+        public static Mesh FillRhinoMesh(MolaMesh mMesh)
         {
-            Mesh rhinoMesh = new Mesh();
+            Mesh rMesh = new Mesh();
             // add vertices
-            foreach (var v in molaMesh.Vertices)
+            Point3f[] rVertices = new Point3f[mMesh.VertexCount()];
+            for (int i = 0; i < mMesh.VertexCount(); i++)
             {
-                rhinoMesh.Vertices.Add(v.x, v.y, v.z);
+                rVertices[i] = new Point3f(mMesh.Vertices[i].x, mMesh.Vertices[i].y, mMesh.Vertices[i].z);
             }
+            rMesh.Vertices.AddVertices(rVertices);
 
             //add faces
-            foreach (var f in molaMesh.Faces)
+            MeshFace[] rFaces = new MeshFace[mMesh.FacesCount()];
+            for (int i = 0; i < mMesh.FacesCount(); i++)
             {
-                if (f.Length == 3)
+                if(mMesh.Faces[i].Length == 3)
                 {
-                    rhinoMesh.Faces.AddFace(f[0], f[1], f[2]);
+                    rFaces[i] = new MeshFace(mMesh.Faces[i][0], mMesh.Faces[i][1], mMesh.Faces[i][2]);
                 }
-                else if (f.Length == 4)
+                else if (mMesh.Faces[i].Length == 4)
                 {
-                    rhinoMesh.Faces.AddFace(f[0], f[1], f[2], f[3]);
+                    rFaces[i] = new MeshFace(mMesh.Faces[i][0], mMesh.Faces[i][1], mMesh.Faces[i][2], mMesh.Faces[i][3]);
                 }
-                else return null;
             }
-            // add color
-            //if (molaMesh.Colors.Count != molaMesh.VertexCount())
-            //{
-            //    molaMesh.Colors = Enumerable.Repeat(Color.red, molaMesh.VertexCount()).ToList();
-            //}
-            // rhinoMesh.VertexColors.SetColors(RhinoColorsFromMolaMesh(molaMesh));
-            rhinoMesh.Normals.ComputeNormals();
-            rhinoMesh.Compact();
+            rMesh.Faces.AddFaces(rFaces);
 
-            return rhinoMesh;
-        }
-        public static MolaMesh FillMolaMesh(Mesh rhinoMesh)
-        {
-            MolaMesh molaMesh = new MolaMesh();
-            foreach (var v in rhinoMesh.Vertices)
+            // add color
+            System.Drawing.Color[] rColors = RhinoColorsFromMolaMesh(mMesh);
+            if(rColors.Length == rMesh.Vertices.Count)
             {
-                molaMesh.AddVertex(v.X, v.Y, v.Z);
+                rMesh.VertexColors.SetColors(rColors);
             }
-            foreach (var f in rhinoMesh.Faces)
+            
+            rMesh.Normals.ComputeNormals();
+            rMesh.Compact();
+
+            return rMesh;
+        }
+        public static MolaMesh FillMolaMesh(Mesh rMesh)
+        {
+            MolaMesh mMesh = new MolaMesh();
+            foreach (var v in rMesh.Vertices)
+            {
+                mMesh.AddVertex(v.X, v.Y, v.Z);
+            }
+            foreach (var f in rMesh.Faces)
             {
                 if (f.IsTriangle)
                 {
-                    molaMesh.AddFace(new int[3] { f.A, f.B, f.C });
+                    mMesh.AddFace(new int[3] { f.A, f.B, f.C });
                 }
                 else if (f.IsQuad)
                 {
-                    molaMesh.AddFace(new int[4] { f.A, f.B, f.C, f.D });
+                    mMesh.AddFace(new int[4] { f.A, f.B, f.C, f.D });
                 }
             }
-            //molaMesh.Colors = MolaColorsFromRhinoMesh(rhinoMesh).ToList();
-            if (molaMesh.Colors.Count != molaMesh.VertexCount())
+
+            Color[] mColors = MolaColorsFromRhinoMesh(rMesh);
+            if(mColors.Length != mMesh.VertexCount())
             {
-                molaMesh.Colors = Enumerable.Repeat(Color.red, molaMesh.VertexCount()).ToList();
+                mColors = Enumerable.Repeat(Color.magenta, mMesh.VertexCount()).ToArray();
             }
-            return molaMesh;
+
+            mMesh.Colors = mColors.ToList();
+            return mMesh;
         }
         public static System.Drawing.Color[] RhinoColorsFromMolaMesh(MolaMesh mMesh)
         {
             System.Drawing.Color[] rhinoColors = new System.Drawing.Color[mMesh.Colors.Count];
-            Color molaV = new Mola.Color();
-            for (int i = 0; i < mMesh.VertexCount(); i++)
+            for (int i = 0; i < mMesh.Colors.Count; i++)
             {
-                molaV = mMesh.Colors[i];
-                rhinoColors[i] = System.Drawing.Color.FromArgb((int)molaV.r * 255, (int)molaV.g * 255, (int)molaV.b * 255, (int)molaV.a * 255);
+                var molaV = mMesh.Colors[i];
+                rhinoColors[i] = System.Drawing.Color.FromArgb((int)(molaV.a * 255), (int)(molaV.r * 255), (int)(molaV.g * 255), (int)(molaV.b * 255));
             }
             return rhinoColors;
         }
         public static Color[] MolaColorsFromRhinoMesh(Mesh rMesh)
         {
             Color[] molaColors = new Color[rMesh.VertexColors.Count];
-            System.Drawing.Color rhinoC = new System.Drawing.Color();
-            for (int i = 0; i < rMesh.Vertices.Count; i++)
+            for (int i = 0; i < rMesh.VertexColors.Count; i++)
             {
-                rhinoC = rMesh.VertexColors[i];
+                var rhinoC = rMesh.VertexColors[i];
                 molaColors[i] = new Color(rhinoC.R/255, rhinoC.G/255, rhinoC.B/255, rhinoC.A/255);
             }
             return molaColors;

@@ -10,9 +10,9 @@ namespace HDMolaGH
     public class AnalyzeFaceCompactness : GH_Component
     {
         public AnalyzeFaceCompactness()
-          : base("AnalyzeFaceCompactness", "Face Compactness",
+          : base("Analyze Face Compactness", "Face Compactness",
             "get a list of face compactness",
-            "Mola", "Analyzing")
+            "Mola", "3-Analysis")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -34,7 +34,7 @@ namespace HDMolaGH
                 compactnessList.Add(mMesh.FaceCompactness(i));
             }
 
-            DA.SetData(0, compactnessList);
+            DA.SetDataList(0, compactnessList);
         }
         protected override System.Drawing.Bitmap Icon
         {

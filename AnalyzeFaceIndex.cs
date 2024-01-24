@@ -11,9 +11,9 @@ namespace HDMolaGH
     public class AnalyzeFaceIndex : GH_Component
     {
         public AnalyzeFaceIndex()
-          : base("AnalyzeFaceIndex", "Face Index",
+          : base("Analyze Face Index", "Face Index",
             "get a list of face index",
-            "Mola", "Analyzing")
+            "Mola", "3-Analysis")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -32,7 +32,7 @@ namespace HDMolaGH
             int fcount = mMesh.FacesCount();
             List<int> indexList = Enumerable.Range(0, fcount).ToList();
 
-            DA.SetData(0, indexList);
+            DA.SetDataList(0, indexList);
         }
         protected override System.Drawing.Bitmap Icon
         {

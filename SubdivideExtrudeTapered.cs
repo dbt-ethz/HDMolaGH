@@ -9,9 +9,9 @@ namespace HDMolaGH
     public class SubdivideExtrudeTapered : GH_Component
     {
         public SubdivideExtrudeTapered()
-          : base("SubdivideExtrudeTapered", "ExtrudeTapered",
+          : base("Subdivide Extrude Tapered", "Extrude Tapered",
               "Extrudes all face in a MolaMesh tapered like a window by creating an offset face and quads between every original edge and the corresponding new edge",
-              "Mola", "Subdivision")
+              "Mola", "2-Subdivisions")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -19,7 +19,7 @@ namespace HDMolaGH
             pManager.AddGenericParameter("MolaMesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
             pManager.AddNumberParameter("Height", "H", "extrude height", GH_ParamAccess.item, 1.0);
             pManager.AddNumberParameter("Fraction", "F", "fraction between 0 and 1", GH_ParamAccess.item, 0.5);
-            pManager.AddBooleanParameter("Cap", "C", "wether cap the top", GH_ParamAccess.item, false);
+            pManager.AddBooleanParameter("Cap", "C", "wether cap the top", GH_ParamAccess.item, true);
             pManager.AddIntegerParameter("Iteration", "I", "subdivide times", GH_ParamAccess.item, 1);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
@@ -31,7 +31,7 @@ namespace HDMolaGH
             MolaMesh mMesh = new MolaMesh();
             double h = 0;
             double f = 0.5;
-            bool c = false;
+            bool c = true;
             int iteration = 1;
 
             DA.GetData(0, ref mMesh);

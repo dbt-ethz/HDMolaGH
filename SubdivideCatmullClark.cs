@@ -7,34 +7,40 @@ using Rhino.Geometry;
 
 namespace HDMolaGH
 {
-    public class AnalyzeFaceNormal : GH_Component
+    public class SubdivideCatmullClark : GH_Component
     {
-        public AnalyzeFaceNormal()
-          : base("Analyze Face Normal", "Face Normal",
-            "get a list of face mnormals",
-            "Mola", "3-Analysis")
+        public SubdivideCatmullClark()
+          : base("Subdivide CatmullClark", "CatmullClark",
+              "apply CatmullClark algorithm to a MolaMesh",
+              "Mola", "2-Subdivisions")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("MolaMesh", "M", "mesh to be analyzed", GH_ParamAccess.item);
+            pManager.AddGenericParameter("MolaMesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Iteration", "I", "subdivide times", GH_ParamAccess.item, 1);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddVectorParameter("FaceNormals", "N", "a list of face normals", GH_ParamAccess.list);
+            pManager.AddGenericParameter("MolaMesh", "M", "result mesh", GH_ParamAccess.item);
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             MolaMesh mMesh = new MolaMesh();
-            DA.GetData(0, ref mMesh);
+            int iteration = 1;
 
-            List<Vector3f> normalList = new List<Vector3f>();
-            for (int i = 0; i < mMesh.FacesCount(); i++)
+            DA.GetData(0, ref mMesh);
+            DA.GetData(1, ref iteration);
+
+            mMesh.WeldVertices();
+            mMesh.UpdateTopology();
+
+            for (int i = 0; i < iteration; i++)
             {
-                normalList.Add(new Vector3f(mMesh.FaceNormal(i).x, mMesh.FaceNormal(i).y, mMesh.FaceNormal(i).z));
+                mMesh = MeshSubdivision.CatmullClark(mMesh);
             }
 
-            DA.SetDataList(0, normalList);
+            DA.SetData(0, mMesh);
         }
         protected override System.Drawing.Bitmap Icon
         {
@@ -47,7 +53,7 @@ namespace HDMolaGH
         }
         public override Guid ComponentGuid
         {
-            get { return new Guid("eb8efa7a-0aba-4501-bf56-11bcdec989d9"); }
+            get { return new Guid("99ff0c51-47f9-4104-80a3-1905c702714a"); }
         }
     }
 }

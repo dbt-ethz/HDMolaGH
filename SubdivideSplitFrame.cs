@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using Mola;
 using Grasshopper;
 using Grasshopper.Kernel;
+using Rhino.Geometry;
 
 namespace HDMolaGH
 {
-    public class UtilMeshJoin : GH_Component
+    public class SubdivideSplitFrame : GH_Component
     {
-        public UtilMeshJoin()
-          : base("Mesh Join", "Join",
-            "Join a list of Mola Meshes into one",
-            "Mola", "4-Utils")
+        public SubdivideSplitFrame()
+         : base("Subdivide Split Frame", "Split Frame",
+             "create an offset frame with quad corners. works only with convex shapes",
+             "Mola", "2-Subdivisions")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Mola Meshes", "M", "mesh to be joined", GH_ParamAccess.list);
+            pManager.AddGenericParameter("MolaMesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Witdh", "W", "offset distance", GH_ParamAccess.item, 0.2); 
+            pManager.AddIntegerParameter("Iteration", "I", "subdivide times", GH_ParamAccess.item, 1);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -24,13 +27,17 @@ namespace HDMolaGH
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            List<MolaMesh> mMeshList = new List<MolaMesh>();
-            DA.GetDataList(0, mMeshList);
-
             MolaMesh mMesh = new MolaMesh();
-            for (int i = 0; i < mMeshList.Count; i++)
+            double w = 1;
+            int iteration = 1;
+
+            DA.GetData(0, ref mMesh);
+            DA.GetData(1, ref w);
+            DA.GetData(2, ref iteration);
+
+            for (int i = 0; i < iteration; i++)
             {
-                mMesh.AddMesh(mMeshList[i]);
+                mMesh = MeshSubdivision.SplitFrame(mMesh, (float)w);
             }
 
             DA.SetData(0, mMesh);
@@ -46,7 +53,7 @@ namespace HDMolaGH
         }
         public override Guid ComponentGuid
         {
-            get { return new Guid("53d32542-fc19-46ca-b046-24923e137046"); }
+            get { return new Guid("582ff905-c761-43bf-8447-b588cfc83300"); }
         }
     }
 }

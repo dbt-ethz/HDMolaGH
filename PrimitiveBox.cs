@@ -10,9 +10,9 @@ namespace HDMolaGH
     public class PrimitiveBox : GH_Component
     {
         public PrimitiveBox()
-          : base("Box", "Box",
+          : base("Mola Box", "Box",
             "create a box",
-            "Mola", "Primitive")
+            "Mola", "1-Primitives")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)

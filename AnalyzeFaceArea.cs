@@ -10,9 +10,9 @@ namespace HDMolaGH
     public class AnalyzeFaceArea : GH_Component
     {
         public AnalyzeFaceArea()
-          : base("AnalyzeFaceArea", "Face Area",
+          : base("Analyze Face Area", "Face Area",
             "get a list of face areas",
-            "Mola", "Analyzing")
+            "Mola", "3-Analysis")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
@@ -34,7 +34,7 @@ namespace HDMolaGH
                 areaList.Add(mMesh.FaceArea(i));
             }
 
-            DA.SetData(0, areaList);
+            DA.SetDataList(0, areaList);
         }
         protected override System.Drawing.Bitmap Icon
         {

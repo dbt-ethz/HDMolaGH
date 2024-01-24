@@ -8,18 +8,20 @@ using System.Linq;
 
 namespace HDMolaGH
 {
-    public class UtilColorMesh : GH_Component
+    public class SubdivideExtrudeValues : GH_Component
     {
-        public UtilColorMesh()
-          : base("Color Mesh", "Color",
-            "Color Mola mesh faces according to a value list",
-            "Mola", "4-Utils")
+        public SubdivideExtrudeValues()
+          : base("Subdivide Extrude Values", "Extrude Values",
+              "extrudes the all faces in a MolaMesh straight by a list of distance heights",
+              "Mola", "2-Subdivisions")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddGenericParameter("Mola Mesh", "M", "mesh to be converted", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Value list", "VList", "a list of values to color all faces", GH_ParamAccess.list);
+            pManager.AddGenericParameter("MolaMesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Height values", "Hs", "a list of height values", GH_ParamAccess.list);
+            pManager.AddBooleanParameter("Cap", "C", "wether cap the top", GH_ParamAccess.item, true);
+            pManager.AddIntegerParameter("Iteration", "I", "subdivide times", GH_ParamAccess.item, 1);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -30,17 +32,23 @@ namespace HDMolaGH
             MolaMesh mMesh = new MolaMesh();
             List<double> doubleList = new List<double>();
             List<float> floatList = new List<float>();
+            bool c = true;
+            List<bool>
+            int iteration = 1;
+
             DA.GetData(0, ref mMesh);
-            DA.GetDataList(1, doubleList);
+            DA.GetData(1, ref doubleList);
+            DA.GetData(2, ref c);
+            DA.GetData(3, ref iteration);
 
             floatList = doubleList.Select(a => (float)a).ToList();
 
-            MolaMesh copyMesh = mMesh.Copy();
-            // temp. make sure color list is same with vertices to be colored by value
-            copyMesh.Colors = Enumerable.Repeat(Color.black, copyMesh.VertexCount()).ToList();
-            UtilsFace.ColorFaceByValue(copyMesh, floatList);
+            for (int i = 0; i < iteration; i++)
+            {
+                mMesh = MeshSubdivision.SubdivideFaceExtrude(mMesh, floatList, c);
+            }
 
-            DA.SetData(0, copyMesh);
+            DA.SetData(0, mMesh);
         }
         protected override System.Drawing.Bitmap Icon
         {
@@ -53,7 +61,7 @@ namespace HDMolaGH
         }
         public override Guid ComponentGuid
         {
-            get { return new Guid("fee14f0e-785d-4a7b-94c0-a8847c94c571"); }
+            get { return new Guid("70ece2d0-eb18-4c05-9cc8-2f3c44108bd4"); }
         }
     }
 }
