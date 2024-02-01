@@ -20,7 +20,7 @@ namespace HDMolaGH
         {
             pManager.AddGenericParameter("MolaMesh", "M", "mesh to be subdivided", GH_ParamAccess.item);
             pManager.AddNumberParameter("Height values", "Hs", "a list of height values", GH_ParamAccess.list);
-            pManager.AddBooleanParameter("Cap", "C", "wether cap the top", GH_ParamAccess.item, true);
+            pManager.AddBooleanParameter("Cap", "C", "wether cap the top", GH_ParamAccess.list);
             pManager.AddIntegerParameter("Iteration", "I", "subdivide times", GH_ParamAccess.item, 1);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
@@ -32,20 +32,19 @@ namespace HDMolaGH
             MolaMesh mMesh = new MolaMesh();
             List<double> doubleList = new List<double>();
             List<float> floatList = new List<float>();
-            bool c = true;
-            List<bool>
+            List<bool> cList = new List<bool>();
             int iteration = 1;
 
             DA.GetData(0, ref mMesh);
-            DA.GetData(1, ref doubleList);
-            DA.GetData(2, ref c);
+            DA.GetDataList(1, doubleList);
+            DA.GetDataList(2, cList);
             DA.GetData(3, ref iteration);
 
             floatList = doubleList.Select(a => (float)a).ToList();
 
             for (int i = 0; i < iteration; i++)
             {
-                mMesh = MeshSubdivision.SubdivideFaceExtrude(mMesh, floatList, c);
+                mMesh = MeshSubdivision.SubdivideMeshExtrude(mMesh, floatList, cList);
             }
 
             DA.SetData(0, mMesh);
