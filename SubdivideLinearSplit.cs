@@ -43,7 +43,7 @@ namespace HDMolaGH
 
             for (int i = 0; i < iteration; i++)
             {
-                mMesh = MeshSubdivision.SubdivideMeshLinearSplitBorder(mMesh, (float)w1, (float)w2, d);
+                mMesh = MeshSubdivision.LinearSplitQuad(mMesh, (float)w1, (float)w2, d);
             }
 
             DA.SetData(0, mMesh);

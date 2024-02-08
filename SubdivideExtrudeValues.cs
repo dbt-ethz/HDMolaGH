@@ -44,7 +44,7 @@ namespace HDMolaGH
 
             for (int i = 0; i < iteration; i++)
             {
-                mMesh = MeshSubdivision.SubdivideMeshExtrude(mMesh, floatList, cList);
+                mMesh = MeshSubdivision.Extrude(mMesh, floatList, cList);
             }
 
             DA.SetData(0, mMesh);
