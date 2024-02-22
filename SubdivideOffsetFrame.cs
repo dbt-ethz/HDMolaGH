@@ -37,7 +37,7 @@ namespace HDMolaGH
 
             for (int i = 0; i < iteration; i++)
             {
-                mMesh = MeshSubdivision.SubdivideMeshOffset(mMesh, (float)o);
+                mMesh = MeshSubdivision.SplitOffset(mMesh, (float)o);
             }
 
             DA.SetData(0, mMesh);

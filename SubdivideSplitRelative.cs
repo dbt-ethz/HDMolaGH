@@ -49,7 +49,7 @@ namespace HDMolaGH
 
             for (int i = 0; i < iteration; i++)
             {
-                mMesh = MeshSubdivision.SplitRelative(mMesh, d, (float)min1, (float)max1, (float)min2, (float)max2);
+                mMesh = MeshSubdivision.Relative(mMesh, d, (float)min1, (float)max1, (float)min2, (float)max2);
             }
 
             DA.SetData(0, mMesh);

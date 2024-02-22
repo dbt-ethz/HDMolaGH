@@ -40,7 +40,7 @@ namespace HDMolaGH
 
             for (int i = 0; i < iteration; i++)
             {
-                mMesh = MeshSubdivision.SplitGridAbs(mMesh, (float)u, (float)v);
+                mMesh = MeshSubdivision.GridAbs(mMesh, (float)u, (float)v);
             }
 
             DA.SetData(0, mMesh);
