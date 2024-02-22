@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mola;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+using System.Linq;
 
 namespace HDMolaGH
 {
@@ -34,6 +35,13 @@ namespace HDMolaGH
             if (!withColor)
             {
                 meshCopy.Colors = new List<Color>();
+            }
+            else
+            {
+                if (meshCopy.Colors.Count != meshCopy.VertexCount())
+                {
+                    meshCopy.Colors = Enumerable.Repeat(Color.white, meshCopy.VertexCount()).ToList();
+                }
             }
 
             Mesh rMesh = HDMeshConverter.FillRhinoMesh(meshCopy);
