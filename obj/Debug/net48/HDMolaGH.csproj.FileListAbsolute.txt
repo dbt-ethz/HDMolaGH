@@ -19,3 +19,4 @@ C:\D\GitHub\HDMolaGH\bin\Debug\net48\HDMolaGH.pdb
 C:\D\GitHub\HDMolaGH\bin\Debug\net48\HDMola.dll
 C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.csproj.CopyComplete
 C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.csproj.AssemblyReference.cache
+C:\D\GitHub\HDMolaGH\bin\Debug\net48\HDMola.pdb

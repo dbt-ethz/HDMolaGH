@@ -7,6 +7,48 @@
     <Description>Description of HDMolaGH</Description>
     <TargetExt>.gha</TargetExt>
   </PropertyGroup>
+	
+  <ItemGroup>
+    <Compile Remove="AnalyzeFaceArea.cs" />
+    <Compile Remove="AnalyzeFaceCompactness.cs" />
+    <Compile Remove="AnalyzeFaceIndex.cs" />
+    <Compile Remove="AnalyzeFaceLocation.cs" />
+    <Compile Remove="AnalyzeFaceModulo.cs" />
+    <Compile Remove="AnalyzeFaceNormal.cs" />
+    <Compile Remove="AnalyzeFacePerimeter.cs" />
+    <Compile Remove="AnalyzeMolaMesh.cs" />
+    <Compile Remove="PrimitiveBox.cs" />
+    <Compile Remove="PrimitiveCircle.cs" />
+    <Compile Remove="PrimitiveCone.cs" />
+    <Compile Remove="PrimitiveDodecahedron.cs" />
+    <Compile Remove="PrimitiveIcosahedron.cs" />
+    <Compile Remove="PrimitiveOctahedron.cs" />
+    <Compile Remove="PrimitiveQuad.cs" />
+    <Compile Remove="PrimitiveRhombicDodecahedron.cs" />
+    <Compile Remove="PrimitiveSphere.cs" />
+    <Compile Remove="PrimitiveTetrahedron.cs" />
+    <Compile Remove="PrimitiveTorus.cs" />
+    <Compile Remove="SubdivideCatmullClark.cs" />
+    <Compile Remove="SubdivideExtrude.cs" />
+    <Compile Remove="SubdivideExtrudeTapered.cs" />
+    <Compile Remove="SubdivideExtrudeToPointCenter.cs" />
+    <Compile Remove="SubdivideExtrudeValues.cs" />
+    <Compile Remove="SubdivideGrid.cs" />
+    <Compile Remove="SubdivideLinearSplit.cs" />
+    <Compile Remove="SubdivideLinearSplitQuad.cs" />
+    <Compile Remove="SubdivideOffsetFace.cs" />
+    <Compile Remove="SubdivideOffsetFrame.cs" />
+    <Compile Remove="SubdivideSplitFrame.cs" />
+    <Compile Remove="SubdivideSplitGridAbs.cs" />
+    <Compile Remove="SubdivideSplitRelative.cs" />
+    <Compile Remove="SubdivideSplitRoof.cs" />
+    <Compile Remove="UtilColorMesh.cs" />
+    <Compile Remove="UtilMeshMerge.cs" />
+    <Compile Remove="UtilRhinoToMola.cs" />
+    <Compile Remove="UtilsMeshSplit.cs" />
+    <Compile Remove="UtilsSingleColorMesh.cs" />
+    <Compile Remove="UtilsUpdateTopology.cs" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Grasshopper" Version="7.13.21348.13001" IncludeAssets="compile;build" />
