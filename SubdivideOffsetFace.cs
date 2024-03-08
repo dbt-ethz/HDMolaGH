@@ -40,7 +40,7 @@ namespace HDMolaGH
 
             for (int i = 0; i < iteration; i++)
             {
-                mMesh = MeshUtils.Offset(mMesh, (float)o, c);
+                mMesh = MeshTools.Offset(mMesh, (float)o, c);
             }
 
             DA.SetData(0, mMesh);
