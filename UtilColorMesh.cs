@@ -12,14 +12,17 @@ namespace HDMolaGH
     {
         public UtilColorMesh()
           : base("Color Mesh", "Color",
-            "Color Mola mesh faces according to a value list",
+            "Color Mola mesh faces",
             "Mola", "4-Utils")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("Mola Mesh", "M", "mesh to be converted", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Value list", "VList", "a list of values to color all faces", GH_ParamAccess.list);
+            pManager.AddIntegerParameter("Mode", "Mode", "coloring method: 0 by single color, 1 by colors, 2 by a list of values", GH_ParamAccess.item, 0);
+            pManager.AddColourParameter("Single Color", "C", "a single color to color all faces", GH_ParamAccess.item, System.Drawing.Color.White);
+            pManager.AddColourParameter("Color list", "CList", "a list of colors to color all faces", GH_ParamAccess.list, new List<System.Drawing.Color>() { System.Drawing.Color.White });
+            pManager.AddNumberParameter("Value list", "VList", "a list of values to color all faces", GH_ParamAccess.list, new List<double>() { 0});
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -28,17 +31,44 @@ namespace HDMolaGH
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             MolaMesh mMesh = new MolaMesh();
+            int mode = 0;
             List<double> doubleList = new List<double>();
-            List<float> floatList = new List<float>();
-            DA.GetData(0, ref mMesh);
-            DA.GetDataList(1, doubleList);
+            List<System.Drawing.Color> rColorList = new List<System.Drawing.Color>();
+            System.Drawing.Color rColor = new System.Drawing.Color();
 
-            floatList = doubleList.Select(a => (float)a).ToList();
+            DA.GetData(0, ref mMesh);
+            DA.GetData(1, ref mode);
+            DA.GetData(2, ref rColor);
+            DA.GetDataList(3, rColorList);
+            DA.GetDataList(4, doubleList);
 
             MolaMesh copyMesh = mMesh.Copy();
-            // temp. make sure color list is same with vertices to be colored by value
-            copyMesh.Colors = Enumerable.Repeat(Color.black, copyMesh.VertexCount()).ToList();
-            UtilsFace.ColorFaceByValue(copyMesh, floatList);
+
+            switch (mode)
+            {
+                case 2:
+                    if (doubleList.Count != copyMesh.FacesCount()) break;
+                    List<float> floatList = new List<float>();
+                    floatList = doubleList.Select(a => (float)a).ToList();
+                    UtilsFace.ColorFaceByValue(copyMesh, floatList);
+                    break;
+                case 1:
+                    if (rColorList.Count != copyMesh.FacesCount()) break;
+                    List<Color> mColorList = new List<Color>();
+                    mColorList = rColorList.Select(a => new Color((float)a.R / 255, (float)a.G / 255, (float)a.B / 255, (float)a.A / 255)).ToList(); 
+                    for (int i = 0; i < copyMesh.FacesCount(); i++)
+                    {
+                        foreach (int v in copyMesh.Faces[i])
+                        {
+                            copyMesh.Colors[v] = mColorList[i];
+                        }
+                    }
+                    break;
+                case 0:
+                    Color mColor = new Color((float)rColor.R / 255, (float)rColor.G / 255, (float)rColor.B / 255, (float)rColor.A / 255);
+                    copyMesh.Colors = Enumerable.Repeat(mColor, copyMesh.VertexCount()).ToList();
+                    break;
+            }
 
             DA.SetData(0, copyMesh);
         }
