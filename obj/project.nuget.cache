@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "bVUUnFTwtxuNrNPU6z8QT4v76KDpbNs39P4COpNK7tlh75ys2+1QabGyjD4YZKc2ZWrHdCKfEp1s/p2xk/GYWw==",
+  "dgSpecHash": "ZYhv6+SO7uRsAcn9duyUWWUyFphdbxZQJARJtOvDM8uhaJ650YxZBw9JblAl2HLD5+HPF56SMNNKPJ0uUxPjIw==",
   "success": true,
   "projectFilePath": "C:\\D\\GitHub\\HDMolaGH\\HDMolaGH.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Wenqian\\.nuget\\packages\\grasshopper\\7.13.21348.13001\\grasshopper.7.13.21348.13001.nupkg.sha512",
-    "C:\\Users\\Wenqian\\.nuget\\packages\\rhinocommon\\7.13.21348.13001\\rhinocommon.7.13.21348.13001.nupkg.sha512"
+    "C:\\Users\\Wen\\.nuget\\packages\\grasshopper\\7.13.21348.13001\\grasshopper.7.13.21348.13001.nupkg.sha512",
+    "C:\\Users\\Wen\\.nuget\\packages\\rhinocommon\\7.13.21348.13001\\rhinocommon.7.13.21348.13001.nupkg.sha512"
   ],
   "logs": []
 }

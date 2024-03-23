@@ -19,8 +19,8 @@ namespace HDMolaGH
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("MolaMesh", "M", "mesh to be analyzed", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Modulo", "Mo", "modulo number", GH_ParamAccess.item, 4);
-            pManager.AddIntegerParameter("N", "N", "every n item", GH_ParamAccess.item, 0);
+            pManager.AddIntegerParameter("Modulo", "Mo", "modulo number", GH_ParamAccess.item, 5);
+            pManager.AddIntegerParameter("N", "N", "every n item", GH_ParamAccess.item, 4);
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
@@ -29,8 +29,8 @@ namespace HDMolaGH
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             MolaMesh mMesh = new MolaMesh();
-            int modulo = 4;
-            int n = 0;
+            int modulo = 5;
+            int n = 4;
             DA.GetData(0, ref mMesh);
             DA.GetData(1, ref modulo);
             DA.GetData(2, ref n);
