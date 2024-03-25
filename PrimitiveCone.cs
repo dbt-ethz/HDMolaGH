@@ -45,7 +45,7 @@ namespace HDMolaGH
             DA.GetData(3, ref r2);
             DA.GetData(4, ref n);
             DA.GetData(5, ref c1);
-            DA.GetData(5, ref c2);
+            DA.GetData(6, ref c2);
 
             MolaMesh mMesh = MeshFactory.CreateCone((float)z1, (float)z2, (float)r1, (float)r2, n, c1, c2);
 
