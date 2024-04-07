@@ -9,6 +9,8 @@
   </PropertyGroup>
 	
   <ItemGroup>
+    <Compile Remove="Grid.cs" />
+    <Compile Remove="GridToMolaMesh.cs" />
     <Compile Remove="UtilsSingleColorMesh.cs" />
   </ItemGroup>
   

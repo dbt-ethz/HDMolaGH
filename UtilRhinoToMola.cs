@@ -21,7 +21,7 @@ namespace HDMolaGH
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Mola Mesh", "M", "result mesh", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Mola Mesh", "M", "the result mesh", GH_ParamAccess.item);
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
