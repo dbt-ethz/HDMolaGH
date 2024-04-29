@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\D\\GitHub\\HDMolaGH\\HDMolaGH.csproj": {}
+    "/Users/yang/GitHub/20231205_MolaGH/HDMolaGH.csproj": {}
   },
   "projects": {
-    "C:\\D\\GitHub\\HDMolaGH\\HDMolaGH.csproj": {
+    "/Users/yang/GitHub/20231205_MolaGH/HDMolaGH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\D\\GitHub\\HDMolaGH\\HDMolaGH.csproj",
+        "projectUniqueName": "/Users/yang/GitHub/20231205_MolaGH/HDMolaGH.csproj",
         "projectName": "HDMolaGH",
-        "projectPath": "C:\\D\\GitHub\\HDMolaGH\\HDMolaGH.csproj",
-        "packagesPath": "C:\\Users\\Wenqian\\.nuget\\packages\\",
-        "outputPath": "C:\\D\\GitHub\\HDMolaGH\\obj\\",
+        "projectPath": "/Users/yang/GitHub/20231205_MolaGH/HDMolaGH.csproj",
+        "packagesPath": "/Users/yang/.nuget/packages/",
+        "outputPath": "/Users/yang/GitHub/20231205_MolaGH/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Wenqian\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/yang/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net48"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -50,7 +44,7 @@
               "version": "[7.13.21348.13001, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/yang/Library/Caches/VisualStudio/8.0/MSBuild/15969_1/RuntimeIdentifierGraph.json"
         }
       }
     }

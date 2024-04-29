@@ -21,7 +21,7 @@ namespace HDMolaGH
         }
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddIntegerParameter("FaceProportion", "P", "a list of face proportions", GH_ParamAccess.list);
+            pManager.AddNumberParameter("FaceProportion", "P", "a list of face proportions", GH_ParamAccess.list);
         }
         protected override void SolveInstance(IGH_DataAccess DA)
         {
