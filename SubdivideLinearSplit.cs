@@ -10,7 +10,7 @@ namespace HDMolaGH
     public class SubdivideLinearSplit : GH_Component
     {
         public SubdivideLinearSplit()
-          : base("Subdivide Linear Split Border", "Linear Split Border",
+          : base("Subdivide Linear Split", "Linear Split",
               "split faces liearly from border",
               "Mola", "2-Subdivisions")
         {
