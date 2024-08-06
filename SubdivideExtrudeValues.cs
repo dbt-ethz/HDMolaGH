@@ -53,9 +53,7 @@ namespace HDMolaGH
         {
             get
             {
-                // You can add image files to your project resources and access them like this:
-                //return Resources.IconForThisComponent;
-                return null;
+                return Properties.Resources.extrudevalue;
             }
         }
         public override Guid ComponentGuid

@@ -49,7 +49,7 @@ namespace HDMolaGH
 
             DA.SetData(0, mMesh);
         }
-        protected override System.Drawing.Bitmap Icon => null;
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.box;
         public override Guid ComponentGuid => new Guid("3C05489B-F189-4C78-B8D5-0B9E4A4020DF");
     }
 }
