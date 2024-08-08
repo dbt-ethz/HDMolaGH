@@ -63,6 +63,16 @@ namespace HDMolaGH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap analyzemola {
+            get {
+                object obj = ResourceManager.GetObject("analyzemola", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap area {
             get {
                 object obj = ResourceManager.GetObject("area", resourceCulture);
@@ -103,6 +113,26 @@ namespace HDMolaGH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap color {
+            get {
+                object obj = ResourceManager.GetObject("color", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap compactness {
+            get {
+                object obj = ResourceManager.GetObject("compactness", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cone {
             get {
                 object obj = ResourceManager.GetObject("cone", resourceCulture);
@@ -116,6 +146,16 @@ namespace HDMolaGH.Properties {
         internal static System.Drawing.Bitmap dodecahedron {
             get {
                 object obj = ResourceManager.GetObject("dodecahedron", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap explode {
+            get {
+                object obj = ResourceManager.GetObject("explode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +293,29 @@ namespace HDMolaGH.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap modulo {
+            get {
+                object obj = ResourceManager.GetObject("modulo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap molatorhino {
             get {
                 object obj = ResourceManager.GetObject("molatorhino", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap normal {
+            get {
+                object obj = ResourceManager.GetObject("normal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -296,6 +356,16 @@ namespace HDMolaGH.Properties {
         internal static System.Drawing.Bitmap perimetor {
             get {
                 object obj = ResourceManager.GetObject("perimetor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap proportion {
+            get {
+                object obj = ResourceManager.GetObject("proportion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -386,6 +456,16 @@ namespace HDMolaGH.Properties {
         internal static System.Drawing.Bitmap tetrahedron {
             get {
                 object obj = ResourceManager.GetObject("tetrahedron", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap toppology {
+            get {
+                object obj = ResourceManager.GetObject("toppology", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
