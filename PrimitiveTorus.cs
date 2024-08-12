@@ -15,6 +15,7 @@ namespace HDMolaGH
             "Mola", "1-Primitives")
         {
         }
+        public override GH_Exposure Exposure => GH_Exposure.secondary;
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddNumberParameter("r1", "r1", "radius of the ring", GH_ParamAccess.item, 3);
