@@ -16,6 +16,7 @@ namespace HDMolaGH
               "Mola", "2-Subdivisions")
         {
         }
+        public override GH_Exposure Exposure => GH_Exposure.secondary;
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("MolaMesh", "M", "mesh to be subdivided", GH_ParamAccess.item);

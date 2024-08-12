@@ -15,6 +15,7 @@ namespace HDMolaGH
             "Mola", "3-Analysis")
         {
         }
+        public override GH_Exposure Exposure => GH_Exposure.primary;
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddGenericParameter("MolaMesh", "M", "mesh to be analyzed", GH_ParamAccess.item);

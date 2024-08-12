@@ -15,6 +15,7 @@ namespace HDMolaGH
             "Mola", "1-Primitives")
         {
         }
+        public override GH_Exposure Exposure => GH_Exposure.secondary;
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddNumberParameter("x", "x1", "x of the center point", GH_ParamAccess.item, 0.0);
