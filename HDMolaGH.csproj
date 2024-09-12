@@ -21,6 +21,7 @@
   <ItemGroup>
     <Reference Include="HDMola">
       <HintPath>..\HDMolaNative\bin\Debug\netstandard2.1\HDMola.dll</HintPath>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
   
