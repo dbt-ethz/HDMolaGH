@@ -9,20 +9,21 @@
   </PropertyGroup>
 	
   <ItemGroup>
-    <Compile Remove="Grid.cs" />
-    <Compile Remove="GridToMolaMesh.cs" />
-    <Compile Remove="UtilsSingleColorMesh.cs" />
+    <Compile Remove="AssemblyPriority.cs" />
+    <Compile Remove="AssemblyResolver.cs" />
+    <Compile Remove="AssemblyResolver.Designer.cs" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <None Remove="install\HDMola.dll" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <EmbeddedResource Include="install\HDMola.dll" />
   </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Grasshopper" Version="7.13.21348.13001" IncludeAssets="compile;build" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Include="HDMola">
-      <HintPath>..\HDMolaNative\bin\Debug\netstandard2.1\HDMola.dll</HintPath>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
-    </Reference>
   </ItemGroup>
   
   <ItemGroup>
