@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Mola
 {
@@ -45,9 +46,21 @@ namespace Mola
         /// ~~~~~~~~~~~~~~
         public MolaMesh()
         {
-            this.vertices = new List<Vec3>();
-            this.faces = new List<int[]>();
-            this.Colors = new List<Color>();
+            vertices = new List<Vec3>();
+            faces = new List<int[]>();
+            Colors = new List<Color>();
+        }
+        public override string ToString()
+        {
+            return $"MolaMesh(vertices: {vertices}, faces: {faces}, Colors: {Colors})";
+        }
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+        public static MolaMesh FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<MolaMesh>(json);
         }
         public Vec3[] CalculateFaceCenters()
         {

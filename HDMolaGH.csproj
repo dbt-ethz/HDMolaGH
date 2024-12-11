@@ -13,9 +13,14 @@
     <Compile Remove="AssemblyResolver.cs" />
     <Compile Remove="AssemblyResolver.Designer.cs" />
   </ItemGroup>
-	
+
+	<ItemGroup>
+  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+</ItemGroup>
+
   <ItemGroup>
     <None Remove="install\HDMola.dll" />
+    <None Remove="System.Json" />
   </ItemGroup>
 	
   <ItemGroup>
@@ -23,7 +28,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Grasshopper" Version="7.13.21348.13001" IncludeAssets="compile;build" />
+    <PackageReference Include="Grasshopper" Version="7.36.23346.16351" IncludeAssets="compile;build" />
   </ItemGroup>
   
   <ItemGroup>
@@ -41,6 +46,9 @@
     </EmbeddedResource>
   </ItemGroup>
   
+  <ItemGroup>
+    <Reference Include="System.Json" />
+  </ItemGroup>
   <PropertyGroup Condition="$(Configuration) == 'Debug' AND $([MSBuild]::IsOSPlatform(Windows))">
     <StartProgram>C:\Program Files\Rhino 7\System\Rhino.exe</StartProgram>
     <StartArguments></StartArguments>

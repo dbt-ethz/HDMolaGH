@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "bVUUnFTwtxuNrNPU6z8QT4v76KDpbNs39P4COpNK7tlh75ys2+1QabGyjD4YZKc2ZWrHdCKfEp1s/p2xk/GYWw==",
+  "dgSpecHash": "ivRZ6y/6kBuVp1fseOqBGLGBUfuKeWt1SSS71fV1FF1VGB3OLx/8arSBE0ZzCC104dZj2S15fzkpODHWqUvUvA==",
   "success": true,
-  "projectFilePath": "C:\\D\\GitHub\\HDMolaGH\\HDMolaGH.csproj",
+  "projectFilePath": "/Users/yang/GitHub/20231205_MolaGH/HDMolaGH.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Wenqian\\.nuget\\packages\\grasshopper\\7.13.21348.13001\\grasshopper.7.13.21348.13001.nupkg.sha512",
-    "C:\\Users\\Wenqian\\.nuget\\packages\\rhinocommon\\7.13.21348.13001\\rhinocommon.7.13.21348.13001.nupkg.sha512"
+    "/Users/yang/.nuget/packages/grasshopper/7.36.23346.16351/grasshopper.7.36.23346.16351.nupkg.sha512",
+    "/Users/yang/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/yang/.nuget/packages/rhinocommon/7.36.23346.16351/rhinocommon.7.36.23346.16351.nupkg.sha512"
   ],
   "logs": []
 }
