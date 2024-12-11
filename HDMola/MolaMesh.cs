@@ -50,13 +50,14 @@ namespace Mola
             faces = new List<int[]>();
             Colors = new List<Color>();
         }
-        public override string ToString()
-        {
-            return $"MolaMesh(vertices: {vertices}, faces: {faces}, Colors: {Colors})";
-        }
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore, // Prevent self-referencing errors
+                Formatting = Formatting.Indented
+            };
+            return JsonConvert.SerializeObject(this, settings);
         }
         public static MolaMesh FromJson(string json)
         {
