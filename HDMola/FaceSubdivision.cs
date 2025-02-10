@@ -624,6 +624,46 @@ public class FaceSubdivision
 
         return new_faces_vertices;
     }
+    public static List<Vec3[]> ExtrudeTapered(Vec3[] face_vertices, Vec3 direction, float height = 0f, float fraction = 0.5f, bool capTop = true)
+    {
+        Vec3 normal = direction.Normalize();
+        Vec3 scaled_normal = normal * height;
+        Vec3 center_vertex = UtilsFace.FaceCenter(face_vertices);
+
+        // calculate new vertex positions
+        List<Vec3> new_vertices = new List<Vec3>();
+        for (int i = 0; i < face_vertices.Length; i++)
+        {
+            Vec3 n1 = face_vertices[i];
+            Vec3 betw = center_vertex - n1;
+            betw *= fraction;
+            Vec3 nn = n1 + betw;
+            nn += scaled_normal;
+            new_vertices.Add(nn);
+        }
+
+        // create the quads along the edges
+        List<Vec3[]> new_faces_vertices = new List<Vec3[]>();
+        int num = face_vertices.Length;
+        for (int i = 0; i < num; i++)
+        {
+            Vec3 n1 = face_vertices[i];
+            Vec3 n2 = face_vertices[(i + 1) % num];
+            Vec3 n3 = new_vertices[(i + 1) % num];
+            Vec3 n4 = new_vertices[i];
+            Vec3[] new_face_vertices = new Vec3[] { n1, n2, n3, n4 };
+            new_faces_vertices.Add(new_face_vertices);
+        }
+
+        // create the closing cap face
+        if (capTop)
+        {
+            Vec3[] cap_face_vertices = new_vertices.ToArray();
+            new_faces_vertices.Add(cap_face_vertices);
+        }
+
+        return new_faces_vertices;
+    }
 
     /// <summary>
     /// Extrude a face into a pitched roof by an extrusion height.

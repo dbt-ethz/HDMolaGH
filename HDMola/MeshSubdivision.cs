@@ -356,6 +356,19 @@ namespace Mola
             }
             return newMesh;
         }
+        public static MolaMesh ExtrudeTapered(MolaMesh molaMesh, Vec3 direction, float height, float fraction, bool capTop)
+        {
+            MolaMesh newMesh = new MolaMesh();
+            for (int i = 0; i < molaMesh.FacesCount(); i++)
+            {
+                List<Vec3[]> new_faces_vertices = FaceSubdivision.ExtrudeTapered(molaMesh.FaceVertices(i), direction, height, fraction, capTop);
+                foreach (var face_vertices in new_faces_vertices)
+                {
+                    newMesh.AddFace(face_vertices);
+                }
+            }
+            return newMesh;
+        }
         /// <summary>
         /// Extrudes all faces in a MolaMesh into pitched rooves
         /// </summary>
@@ -363,6 +376,7 @@ namespace Mola
         /// <param name="height">Extruding height</param>
         /// <returns>The result MolaMesh</returns>
         /// ![](roof.png)
+        /// 
         public static MolaMesh SplitRoof(MolaMesh molaMesh, float height = 0f)
         {
             MolaMesh newMesh = new MolaMesh();
