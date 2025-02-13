@@ -1,6 +1,6 @@
 Mola GH
 =======
-![logo](documents/Logo.jpg)
+![logo](producing/Logo.jpg)
 
 Mola is a plugin for Rhino Grasshopper that provides a set of components for rule-based mesh subdivision. Mesh subdivision algorithms iteratively refine a coarse polygonal mesh by replacing a face with a set if new faces, developing simple meshes into intricate, highly detailed forms. By combining multiple subdivision rules, Mola enables the generation of complex geometries from relatively minimal input.
 
@@ -14,6 +14,6 @@ Mola is also compatible with other Grasshopper components and customized scripti
 
 🔗 Dowload: TBC
 
-🔗 API: https://dbt-ethz.github.io/HDMolaDocumentation/index.html
+🔗 API: https://dbt-ethz.github.io/HDMolaGH/
 
-🔗 GitHub: [HDMolaGH](https://github.com/dbt-ethz/HDMolaGH)
+🔗 GitHub: https://github.com/dbt-ethz/HDMolaGH
