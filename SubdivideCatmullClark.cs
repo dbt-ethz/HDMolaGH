@@ -40,6 +40,8 @@ namespace HDMolaGH
             {
                 mMesh = MeshSubdivision.CatmullClark(mMesh);
             }
+            mMesh.WeldVertices();
+            mMesh.UpdateTopology();
 
             DA.SetData(0, mMesh);
         }

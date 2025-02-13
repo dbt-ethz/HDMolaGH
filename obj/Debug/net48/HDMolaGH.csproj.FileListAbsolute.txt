@@ -22,3 +22,4 @@ C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.csproj.CoreCompileInputs.cache
 C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.csproj.CopyComplete
 C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.gha
 C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.pdb
+C:\D\GitHub\HDMolaGH\obj\Debug\net48\HDMolaGH.csproj.AssemblyReference.cache
