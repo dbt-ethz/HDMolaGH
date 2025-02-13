@@ -29,9 +29,9 @@ Examples
 --------
 Gallery
 ![e1](examples/00_gallery.jpg)
-Subidivde from a quad
+Subdivide from a quad
 ![e1](examples/01_subdivide_from_quad.jpg)
-Suvidive from a cube
+Subdivide from a cube
 ![e1](examples/02_subidivide_from_single_cube.jpg)
 Subdivide by values
 ![e1](examples/03_subdivide_by_value.jpg)
