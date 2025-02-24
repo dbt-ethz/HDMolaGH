@@ -124,6 +124,9 @@
   <data name="area" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\install\icondesign\1x\area.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="array" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\install\icondesign\1x\array.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="box" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\install\icondesign\1x\box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

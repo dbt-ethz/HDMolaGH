@@ -25,6 +25,108 @@ namespace Mola
             }
             return VoxelMesh(matrix,  c );
         }
+        public static void ReplaceValue(ref object array, object target, object newValue)
+        {
+            if (array is object[] arr)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] is object[] subArray)
+                    {
+                        ReplaceValue(ref arr[i], target, newValue); // Recursive call for deeper levels
+                    }
+                    else if (Equals(arr[i], target))
+                    {
+                        arr[i] = newValue;
+                        return; // Stop after replacing first occurrence
+                    }
+                }
+            }
+        }
+        public static void ReplaceOneWithTrue(ref object array, int target)
+        {
+            if (array is object[] arr)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] is object[] subArray)
+                    {
+                        ReplaceOneWithTrue(ref arr[i], target);
+                    }
+                    else
+                    {
+                        if (Equals(arr[i], target))
+                        {
+                            arr[i] = true; // Replace first occurrence
+                        }
+                        else
+                        {
+                            arr[i] = false; // Replace all other values
+                        }
+                    }
+                }
+            }
+        }
+        public static IEnumerable<T[]> ChunkArray<T>(T[] array, int size)
+        {
+            for (int i = 0; i < array.Length; i += size)
+            {
+                yield return array.Skip(i).Take(size).ToArray();
+            }
+        }
+        public static object Reshape1DToND(bool[] array, int[] shape, bool defaultValue = false, int depth = 0)
+        {
+            int totalSize = shape.Skip(depth).Aggregate(1, (a, b) => a * b);
+            bool[] paddedArray = new bool[totalSize];
+
+            // Copy elements from input array, fill missing spots
+            for (int i = 0; i < paddedArray.Length; i++)
+            {
+                paddedArray[i] = i < array.Length ? array[i] : defaultValue;
+            }
+
+            if (depth == shape.Length - 1)
+                return ChunkArray(paddedArray, shape[depth]).ToArray(); // Flatten last dimension
+
+            return ChunkArray(paddedArray, totalSize / shape[depth])
+            .Select(subArray => Reshape1DToND(subArray, shape, defaultValue, depth + 1))
+            .ToArray();
+        }
+        public static bool[,,] Reshape1DTo3D(bool[] array, int x, int y, int z, bool defaultValue = false)
+        {
+            bool[,,] array3D = new bool[x, y, z];
+            int index = 0;
+            for (int d = 0; d < x; d++)
+            {
+                for (int r = 0; r < y; r++)
+                {
+                    for (int c = 0; c < z; c++)
+                    {
+                        if (index < array.Length)
+                        {
+                            array3D[d, r, c] = array[index]; // Copy value from 1D array
+                            index++;
+                        }
+                        else
+                        {
+                            array3D[d, r, c] = defaultValue; // Fill remaining with default (0 for int, null for objects)
+                        }
+                    }
+                }
+            }
+            return array3D;
+        }
+        public static bool[] IntArray2Bool(int[] intArray, int targetInt)
+        {
+            bool[] boolArray = intArray.Select(o => ConvertToBool(o, targetInt)).ToArray();
+            return boolArray;
+        }
+        static bool ConvertToBool(object value, int target)
+        {
+            if (value is bool b) return b;
+            if (value is int i) return i == target;
+            else return false;
+        }
         public static MolaMesh VoxelMesh(MolaGrid<bool> grid, Color? c = null)
         {
             Color color = c ?? Color.white;
