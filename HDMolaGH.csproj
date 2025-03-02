@@ -51,7 +51,6 @@
     <Compile Remove="code\SubdivideSplitGridAbs.cs" />
     <Compile Remove="code\SubdivideSplitRelative.cs" />
     <Compile Remove="code\SubdivideSplitRoof.cs" />
-    <Compile Remove="code\UtilColorMesh.cs" />
     <Compile Remove="code\UtilJsonToMola.cs" />
     <Compile Remove="code\UtilMeshMerge.cs" />
     <Compile Remove="code\UtilMolaToJson.cs" />
