@@ -12,6 +12,8 @@
     <Compile Remove="AssemblyPriority.cs" />
     <Compile Remove="AssemblyResolver.cs" />
     <Compile Remove="AssemblyResolver.Designer.cs" />
+    <Compile Remove="code\Grid.cs" />
+    <Compile Remove="code\GridToMolaMesh.cs" />
   </ItemGroup>
 
 	<ItemGroup>
